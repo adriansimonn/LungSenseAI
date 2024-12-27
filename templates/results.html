@@ -1,0 +1,62 @@
+<!-- LungSense.AI -->
+<!-- Author: Adrian Simon -->
+<!-- RESULTS PAGE FOR DISPLAYING QUESTIONNAIRE RESULTS FROM MODEL -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - LungSense.AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="{{ riskLevel }}">
+    <div class="results-page">
+        <div class="results-container">
+            <h1 id="typed-title"></h1>
+            <p id="typed-message"></p>
+            <p id="typed-confidence"></p>
+            <p id="disclaimer"></p>
+            <button onclick="window.location.href='/'" class="home-button">Home</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const titleText = "Results";
+            const messageText = "{{ message }}";
+            const confidenceText = "Confidence: {{ confidence }}%";
+            const disclaimer = "DISCLAIMER: This prediction is not a medical diagnosis. Consult a healthcare professional for accurate results.";
+
+            const typedTitle = document.getElementById("typed-title");
+            const typedMessage = document.getElementById("typed-message");
+            const typedConfidence = document.getElementById("typed-confidence");
+            const typedDisclaimer = document.getElementById("disclaimer");
+            const typingSpeed = 20;
+
+            function typeText(element, text, callback) {
+                let index = 0;
+                function type() {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, typingSpeed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                element.textContent = "";
+                type();
+            }
+
+            typeText(typedTitle, titleText, function() {
+                typeText(typedMessage, messageText, function() {
+                    typeText(typedConfidence, confidenceText, function() {
+                        typeText(typedDisclaimer, disclaimer);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

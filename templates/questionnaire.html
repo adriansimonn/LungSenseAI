@@ -1,0 +1,164 @@
+<!-- LungSense.AI -->
+<!-- Author: Adrian Simon -->
+<!-- QUESTIONNAIRE PAGE WITH TEXTBOXES AND DROPDOWNS FOR MODEL TO PROCESS -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire - LungSense.AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="questionnaire-container">
+        <form action="/submit" method="POST" class="questionnaire-form">
+            <label for="gender">What is your gender?</label>
+            <select id="gender" name="gender">
+                <option value="None">-</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+
+            <label for="age">What is your age?</label>
+            <p class="question-info">Enter an age between 13 and 100 (inclusive)</p>
+            <input type="number" id="age" name="age" min="1" max="100" required>
+    
+            <label for="smoking">Do you smoke regularly?</label>
+            <p class="question-info">3+ times per week. E-Cigarettes count.</p>
+            <select id="smoking" name="smoking">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="exercise">Do you exercise regularly?</label>
+            <p class="question-info">3+ times per week. Any type of exercise (weightlifting, cardio, sports).</p>
+            <select id="exercise" name="exercise">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="family_history">Does your family have a history with lung cancer?</label>
+            <p class="question-info">Answer "Yes" if it runs in your immediate family or relatives (parents, siblings, children, grandparents, aunts, uncles, nieces, nephews).</p>
+            <select id="family_history" name="family_history">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="healthy_diet">Do you have a healthy diet?</label>
+            <p class="question-info">Balanced diet with nutritious foods such as fruits, vegetables, whole grains, and meat.</p>
+            <select id="healthy_diet" name="healthy_diet">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="chronic_disease">Do you have any chronic diseases associated with your lungs?</label>
+            <p class="question-info">Specifically, but not exclusive to COPD, Pneumonia, Tuberculosis, Asthma, or Emphysema.</p>
+            <select id="chronic_disease" name="chronic_disease">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="fatigue">Do you experience fatigue?</label>
+            <select id="fatigue" name="fatigue">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="secondhand">Do you experience secondhand smoke often?</label>
+            <p class="question-info">Inhaling smoke from others who are smoking. Often as in 4+ times per week.</p>
+            <select id="secondhand" name="secondhand">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="wheezing">Do you experience wheezing?</label>
+            <select id="wheezing" name="wheezing">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="air_pollution">Do you live in an area with high air pollution?</label>
+            <p class="question-info">Answer "Yes" if your area has an Air Quality Index (AQI) consistently above 100</p>
+            <select id="air_pollution" name="air_pollution">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="coughing">Do you experience chronic coughing?</label>
+            <select id="coughing" name="coughing">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="shortness_of_breath">Do you experience shortness of breath?</label>
+            <select id="shortness_of_breath" name="shortness_of_breath">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="swallowing_difficulty">Do you experience difficulty swallowing?</label>
+            <select id="swallowing_difficulty" name="swallowing_difficulty">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <label for="chest_pain">Do you experience chest pain?</label>
+            <select id="chest_pain" name="chest_pain">
+                <option value="None">-</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+    
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector(".questionnaire-form");
+            const dropdowns = form.querySelectorAll("select");
+            const ageInput = form.querySelector("#age");
+    
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+                let errorMessage = "";
+    
+                // Checks if all dropdowns are valid
+                dropdowns.forEach((dropdown) => {
+                    if (dropdown.value === "None") {
+                        isValid = false;
+                        errorMessage = "One or more questions are not answered. Please answer all of them.";
+                    }
+                });
+    
+                // Checks if age is within 13-100 inclusive
+                const age = parseInt(ageInput.value, 10);
+                if (isNaN(age) || age < 13 || age > 100) {
+                    isValid = false;
+                    errorMessage = "Please enter a valid age between 13 and 100.";
+                }
+    
+                // If not valid, prevent form submission and display the error message
+                if (!isValid) {
+                    event.preventDefault();
+                    alert(errorMessage);
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

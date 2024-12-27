@@ -1,0 +1,221 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #26272b;
+    color: #dfdfdf;
+}
+
+.questionnaire-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.questionnaire-form::-webkit-scrollbar {
+    width: 10px;
+    background-color: #3c3c3c;
+}
+
+.questionnaire-form::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+
+.questionnaire-form::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+.questionnaire-form label {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: large;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #494949;
+    color: #dfdfdf;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    max-width: 300px;
+}
+
+input, select:hover {
+    background-color: #5a5a5a;
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #494949;
+    color: #dfdfdf;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #181818;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.questionnaire-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.entry-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    text-align: center;
+    background-color: #26272b;
+    margin-top: 100px;
+}
+
+.logo {
+    width: 600px;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.subtext {
+    margin: 0px 20px;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #c4c4c4;
+    line-height: 1.5;
+}
+
+.question-info {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #dfdfdf;
+    line-height: 1.5;
+}
+
+.begin-button {
+    margin-top: 50px;
+    padding: 12px 24px;
+    background-color: #3b3b3b;
+    color: #dfdfdf;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    line-height: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.begin-button:hover {
+    background-color: #181818;
+}
+
+.results-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.results-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    color: #dfdfdf;
+}
+
+.results-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.results-container p:not(.disclaimer) {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.home-button {
+    margin-top: 20px;
+    background-color: #494949;
+    color: #dfdfdf;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #181818;
+}
+
+body.present {
+    background-color: #ff6d6d;
+}
+
+body.absent {
+    background-color: #64ff79;
+}
+
+#typed-text::after {
+    content: "|";
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#disclaimer {
+    font-size: 0.7rem !important;
+    font-family: 'Segoe UI', sans-serif;
+    color: #dfdfdf;
+    line-height: 1.5;
+    font-weight: normal !important;
+}

@@ -1,0 +1,42 @@
+<!-- LungSense.AI -->
+<!-- Author: Adrian Simon -->
+<!-- ENTRY PAGE FOR LUNGSENSE.AI -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LungSense.AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="entry-page">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="LungSense.AI Logo" class="logo">
+        <p id="typed-text" class="subtext">A lung cancer risk predictor powered by AI. Answer a few questions to see if you are at risk of having lung cancer.</p>
+        <div id="button-container" style="display: none;">
+            <button onclick="window.location.href='/questionnaire'" class="begin-button">Begin</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const text = "A lung cancer risk predictor powered by AI. Answer a few questions to see if you are at risk of having lung cancer.";
+            const typedText = document.getElementById("typed-text");
+            const buttonContainer = document.getElementById("button-container");
+            let index = 0;
+
+            function typeText() {
+                if (index < text.length) {
+                    typedText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeText, 20);
+                } else {
+                    buttonContainer.style.display = "block";
+                }
+            }
+            typedText.textContent = "";
+            typeText();
+        });
+    </script>
+</body>
+</html>
